@@ -1,0 +1,85 @@
+@import '../assets/sass/variables';
+
+.slider {
+	position: relative;
+
+	&__tag {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+
+	&__img {
+		position: relative;
+		width: 100%;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: black;
+			opacity: 0.8;
+			z-index: 100000;
+		}
+	}
+
+	// next/previous buttons
+	&__next-slide,
+	&__prev-slide {
+		font-size: 4rem;
+		font-weight: 900;
+		cursor: pointer;
+		// color: transparent;
+		// padding: 200px 12px;
+		color: $blue-color;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+
+	&__next-slide {
+		@include center-vertical;
+		right: 2rem;
+	}
+
+	&__prev-slide {
+		@include center-vertical;
+		left: 2rem;
+	}
+
+	// dots
+	&__dot-list {
+		@include center-horizontal;
+		list-style-type: none;
+		display: flex;
+		align-items: baseline;
+		bottom: 16%;
+	}
+
+	&__dot-item {
+		width: 16px;
+		height: 16px;
+		background-color: $blue-color;
+		opacity: 0.25;
+		border-radius: 50%;
+		cursor: pointer;
+		transition: all 0.3s ease-out;
+
+		&:hover,
+		&.active {
+			opacity: 0.7;
+			width: 24px;
+			height: 24px;
+		}
+	}
+
+	&__dot-item + &__dot-item {
+		margin-left: 0.8rem;
+	}
+}

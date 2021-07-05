@@ -1,0 +1,25 @@
+// color primary
+$blue-color: #99fffd;
+$pink-color: #ef32d9;
+$btn-color: #dec350;
+
+// color custom
+
+//height
+$nav-height: 5.2rem;
+
+//
+$text-size: 1.6rem;
+
+//mixin
+@mixin center-vertical {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+@mixin center-horizontal {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
