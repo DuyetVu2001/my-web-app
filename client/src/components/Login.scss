@@ -1,0 +1,117 @@
+@import '../assets/sass/variables';
+
+.login {
+    display: none!important;
+
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 30000;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60rem;
+
+	background: #888;
+
+	&__color {
+		position: absolute;
+
+		filter: blur(15rem);
+
+		&:nth-child(1) {
+			top: 0;
+			right: 0;
+
+			width: 80%;
+			height: 40rem;
+
+			background: $blue-color;
+		}
+
+		&:nth-child(2) {
+			bottom: 0;
+			right: 0;
+
+			width: 80%;
+			height: 40rem;
+
+			background: $pink-color;
+		}
+	}
+
+	&__box {
+		z-index: 10;
+
+		width: 500px;
+		padding: 40px;
+		border: 0.1rem solid rgba(255, 255, 255, 0.1);
+
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	&__title {
+		position: relative;
+
+		margin-bottom: 2rem;
+
+		color: white;
+
+		font-size: 2.6rem;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: -0.5rem;
+
+			width: 10rem;
+			height: 0.4rem;
+
+			background: white;
+		}
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__input {
+		margin-bottom: 2rem;
+		padding: 1.6rem 2rem;
+		outline: none;
+		border: none;
+		border-radius: 3.6rem;
+
+		font-size: $text-size;
+		font-weight: 600;
+
+		background: rgba(255, 255, 255, 0.2);
+		color: white;
+
+		&::placeholder {
+			color: white;
+		}
+
+		&[type='submit'] {
+			width: 10rem;
+
+			background: white;
+			color: black;
+
+			cursor: pointer;
+		}
+	}
+
+	&__forget {
+		font-size: 1.4rem;
+		font-weight: 500;
+
+		p {
+			margin-top: 0.4rem;
+		}
+	}
+}
