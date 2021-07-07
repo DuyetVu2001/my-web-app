@@ -1,0 +1,10 @@
+GET http://localhost:5000/cards
+
+###
+POST http://localhost:5000/cards
+
+###
+PUT http://localhost:5000/cards/update
+
+###
+DELETE http://localhost:5000/cards/delete
