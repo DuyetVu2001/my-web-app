@@ -8,3 +8,14 @@ PUT http://localhost:5000/cards/update
 
 ###
 DELETE http://localhost:5000/cards/delete
+
+###
+GET http://localhost:5000/login/
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjU3NTY3MTQsImV4cCI6MTYyNTc3NDcxNH0.BsVsJ4ZZ78537KTzV1_YjpSBabIvH7ce3sFpFiCJZNM
+
+###
+POST http://localhost:5000/login
+
+{
+  "username": "DuyetVu"
+}
