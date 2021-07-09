@@ -5,12 +5,13 @@ import {
 	updateCard,
 	deleteCard,
 } from '../controllers/CardControllers.js';
+import { authToken } from '../middles/auth.js';
 
 const router = Router();
 
 router.get('/', readCard);
 
-router.post('/', createCard);
+router.post('/', authToken, createCard);
 
 router.put('/update', updateCard);
 
