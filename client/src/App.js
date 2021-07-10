@@ -1,13 +1,16 @@
 import './App.scss';
-import Header from './containers/Header';
-import Login from './components/Login';
+import Header from './components/header/Header';
+import Auth from './components/auth/Auth';
+import { AuthProvider } from './components/auth/AuthContext';
 
 function App() {
 	return (
-		<div className="app">
-			<Header />
-			<Login />
-		</div>
+		<AuthProvider>
+			<div className="app">
+				<Header />
+				<Auth />
+			</div>
+		</AuthProvider>
 	);
 }
 

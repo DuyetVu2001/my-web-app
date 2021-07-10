@@ -1,4 +1,4 @@
-@import '../assets/sass/variables';
+@import '../../assets/sass/variables';
 
 .header {
 	position: relative;
@@ -14,21 +14,20 @@
 		justify-content: space-between;
 		align-items: center;
 		height: $nav-height;
-		z-index: 3000;
+		z-index: 1;
 		// background-image: linear-gradient(90deg, rgba($blue-color, .4), rgba($pink-color, .4));
 	}
 
 	&__logo {
-		z-index: 1000;
 		font-size: 3rem;
 	}
 
 	&__list {
-		z-index: 1000;
+		display: flex;
+		font-size: 2.4rem;
 	}
 
-	&__icon {
+	&__item {
 		cursor: pointer;
-		font-size: 2.4rem;
 	}
 }

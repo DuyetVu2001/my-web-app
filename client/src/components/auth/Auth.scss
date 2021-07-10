@@ -1,13 +1,13 @@
-@import '../assets/sass/variables';
+@import '../../assets/sass/variables';
 
-.login {
-    display: none!important;
+.sign-in {
+	// display: none!important;
 
 	position: fixed;
 	top: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 30000;
+	z-index: 2;
 
 	display: flex;
 	justify-content: center;
@@ -15,6 +15,21 @@
 	width: 60rem;
 
 	background: #888;
+
+	&__container {
+		z-index: 1;
+	}
+
+	&__close {
+		position: absolute;
+		top: 1.1rem;
+		right: 2rem;
+		z-index: 1;
+
+		color: rgba($pink-color, .5);
+
+		font-size: 2.4rem;
+	}
 
 	&__color {
 		position: absolute;
@@ -43,11 +58,10 @@
 	}
 
 	&__box {
-		z-index: 10;
-
 		width: 500px;
 		padding: 40px;
 		border: 0.1rem solid rgba(255, 255, 255, 0.1);
+		border-radius: 0.3rem;
 
 		background: rgba(255, 255, 255, 0.1);
 	}
@@ -60,6 +74,7 @@
 		color: white;
 
 		font-size: 2.6rem;
+		text-transform: capitalize;
 
 		&::before {
 			content: '';
@@ -112,6 +127,16 @@
 
 		p {
 			margin-top: 0.4rem;
+		}
+
+		em {
+			cursor: pointer;
+			color: rgba($blue-color, 0.6);
+			text-decoration: underline;
+
+			&:hover {
+				color: rgba($blue-color, 0.8);
+			}
 		}
 	}
 }

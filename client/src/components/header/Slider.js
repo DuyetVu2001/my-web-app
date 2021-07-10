@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Img1 from '../assets/img/Thao-Tun.jpg';
-import Img2 from '../assets/img/dog.jpg';
-import Img3 from '../assets/img/color.jpg';
-import Img4 from '../assets/img/web.png';
+import Img1 from '../../assets/img/dog.jpg';
+import Img2 from '../../assets/img/Thao-Tun.jpg';
+import Img3 from '../../assets/img/color.jpg';
+import Img4 from '../../assets/img/web.png';
 import './Slider.scss';
 
 const Slider = () => {
@@ -25,7 +25,7 @@ const Slider = () => {
 
 		timeoutRef.current = setTimeout(() => {
 			setCurrent(current === slideLength - 1 ? 0 : current + 1);
-		}, 2000);
+		}, 20000);
 
 		return () => {
 			resetTimeout();

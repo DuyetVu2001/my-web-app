@@ -1,4 +1,4 @@
-@import '../assets/sass/variables';
+@import '../../assets/sass/variables';
 
 .slider {
 	position: relative;
@@ -14,18 +14,6 @@
 	&__img {
 		position: relative;
 		width: 100%;
-
-		&::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			background-color: black;
-			opacity: 0.8;
-			z-index: 100000;
-		}
 	}
 
 	// next/previous buttons
