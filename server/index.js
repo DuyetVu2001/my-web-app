@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import route from './routers/index.js';
 import dotenv from 'dotenv';
 
@@ -9,6 +10,7 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(express.json());
+app.use(cors());
 
 // set up mongodb connection
 const URI =

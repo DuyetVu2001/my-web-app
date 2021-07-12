@@ -12,13 +12,22 @@ export const userSignUp = async (req, res) => {
 
 	// Check for existing user
 	const user = await User.findOne({ username });
+
 	if (user) {
-		res.json('User already exists!');
+		res.json({
+			success: false,
+			message: 'User already exists!',
+		});
 	}
 
 	// Save user to db
 	const newUser = new User({ username, password });
 	await newUser.save();
+
+	res.json({
+		success: true,
+		message: 'Account created successfully!',
+	});
 };
 
 //@ Post -> user/sign-in -> sign in -> private
@@ -28,11 +37,17 @@ export const userSignIn = async (req, res) => {
 	// Check for existing user
 	const user = await User.findOne({ username });
 	if (!user) {
-		return res.json('User does not exist!');
+		return res.json({
+			success: false,
+			message: 'User does not exist!',
+		});
 	}
 
 	if (password !== user.password) {
-		res.json('Incorrect password!');
+		res.json({
+			success: false,
+			message: 'Incorrect password!',
+		});
 	}
 
 	// Create accessToken
@@ -51,6 +66,7 @@ export const userSignIn = async (req, res) => {
 
 	// Return to client
 	res.json({
+		success: true,
 		message: 'User signed in successfully!',
 		accessToken,
 		refreshToken,
@@ -76,6 +92,7 @@ export const userRefreshToken = async (req, res) => {
 			res.sendStatus(403);
 		}
 	});
+	// End
 
 	// Create accessToken
 	const accessToken = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET, {

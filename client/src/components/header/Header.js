@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import './Header.scss';
 import Slider from './Slider';
-import { AuthContext } from '../auth/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Header = () => {
 	// Auth context
-	const { setIsNotAuth } = useContext(AuthContext);
+	const { setAuthTrue } = useContext(AuthContext);
 
 	return (
 		<header className="header">
@@ -14,7 +14,7 @@ const Header = () => {
 				<h1 className="header__logo">Duyet Vu</h1>
 
 				<div className="header__list">
-					<div className="header__item" onClick={setIsNotAuth}>
+					<div className="header__item" onClick={setAuthTrue}>
 						<i class="fas fa-cog"></i>
 					</div>
 				</div>
