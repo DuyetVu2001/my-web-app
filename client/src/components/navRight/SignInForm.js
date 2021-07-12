@@ -30,7 +30,7 @@ const SignInForm = ({ toggleSignForm }) => {
 
 		// Send data to server
 		signInFormSubmit(signInData);
-		
+
 		// Reset value input after submit
 		setSignInData({
 			username: '',

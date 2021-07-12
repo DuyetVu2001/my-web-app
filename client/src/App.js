@@ -1,16 +1,14 @@
 import './App.scss';
 import Header from './components/header/Header';
-import Auth from './components/auth/Auth';
-import AuthProvider from './contexts/AuthContext';
+import NavRight from './components/navRight/NavRight';
+
 
 function App() {
 	return (
-		<AuthProvider>
-			<div className="app">
-				<Header />
-				<Auth />
-			</div>
-		</AuthProvider>
+		<div className="app">
+			<Header />
+			<NavRight />
+		</div>
 	);
 }
 

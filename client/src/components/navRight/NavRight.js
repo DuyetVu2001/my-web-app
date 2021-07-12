@@ -1,13 +1,13 @@
-import React, {useState, useCallback, useContext} from 'react';
-import './Auth.scss';
+import React, { useState, useCallback, useContext } from 'react';
+import './NavRight.scss';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
-import { AuthContext } from '../../contexts/AuthContext';
+import { NavRightContext } from '../../contexts/NavRightContext';
 
-const Auth = () => {
-	// Auth context
-	const {isAuth, setAuthFalse} = useContext(AuthContext)
-	
+const NavRight = () => {
+	// NavRight context
+	const { toggleNavRight, hideNavRight } = useContext(NavRightContext);
+
 	// Toggle sign-in/out form
 	const [isSignIn, setIsSignIn] = useState(true);
 	const toggleSignForm = useCallback(() => {
@@ -16,10 +16,10 @@ const Auth = () => {
 
 	return (
 		<>
-			{isAuth ? (
+			{toggleNavRight ? (
 				<>
 					{/* Overlay */}
-					<div id="overlay" onClick={() => setAuthFalse(false)} />
+					<div id="overlay" onClick={() => hideNavRight(false)} />
 					{/* End overlay */}
 
 					<div className="sign-in">
@@ -29,7 +29,7 @@ const Auth = () => {
 						<div className="sign-in__container">
 							<div
 								className="sign-in__close"
-								onClick={() => setAuthFalse(false)}
+								onClick={() => hideNavRight(false)}
 							>
 								<i class="fas fa-times-circle"></i>
 							</div>
@@ -49,4 +49,4 @@ const Auth = () => {
 	);
 };
 
-export default Auth;
+export default NavRight;

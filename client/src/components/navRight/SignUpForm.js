@@ -63,7 +63,7 @@ const SignUpForm = ({ toggleSignForm }) => {
 					type="password"
 					className="sign-in__input"
 					placeholder="Password"
-					name='password'
+					name="password"
 					value={password}
 					onChange={onChangeInput}
 				/>
@@ -72,7 +72,7 @@ const SignUpForm = ({ toggleSignForm }) => {
 					type="password"
 					className="sign-in__input"
 					placeholder="Confirm password"
-					name='confirm_password'
+					name="confirm_password"
 					value={confirm_password}
 					onChange={onChangeInput}
 				/>
