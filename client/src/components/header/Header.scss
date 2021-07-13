@@ -3,6 +3,7 @@
 .header {
 	position: relative;
 	height: 100vh;
+	overflow: hidden;
 
 	&__nav {
 		position: absolute;

@@ -1,8 +1,6 @@
 @import '../../assets/sass/variables';
 
 .slider {
-	position: relative;
-
 	&__tag {
 		display: none;
 
@@ -12,19 +10,22 @@
 	}
 
 	&__img {
-		position: relative;
-		width: 100%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 
 	// next/previous buttons
 	&__next-slide,
 	&__prev-slide {
-		font-size: 4rem;
-		font-weight: 900;
 		cursor: pointer;
-		// color: transparent;
-		// padding: 200px 12px;
 		color: $blue-color;
+
+		i {
+			font-size: 4rem;
+			font-weight: 900;
+		}
 
 		&:hover {
 			opacity: 0.8;

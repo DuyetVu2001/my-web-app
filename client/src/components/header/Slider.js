@@ -79,7 +79,7 @@ const Slider = () => {
 			</ul>
 
 			{/* slide next/previous buttons */}
-			<span className="slider__prev-slide active" onClick={prevSlide}>
+			<span className="slider__prev-slide" onClick={prevSlide}>
 				<i class="fas fa-arrow-circle-left"></i>
 			</span>
 			<span className="slider__next-slide" onClick={nextSlide}>
