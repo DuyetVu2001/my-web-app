@@ -30,3 +30,13 @@ graph TD;
     NavRight --> SignUpForm
 ```
 
+```mermaid
+graph TD;
+    post --> img
+    post --> title
+    post --> desc
+    post --> content
+    post --> genre
+    post --> time_read
+```
+
