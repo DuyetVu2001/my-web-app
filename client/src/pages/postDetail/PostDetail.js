@@ -1,6 +1,6 @@
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import post from '../assets/img/post.jpg';
+import post from '../../assets/img/post.jpg';
 import './PostDetail.scss';
 
 const PostDetail = () => {

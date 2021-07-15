@@ -21,6 +21,7 @@
 
 	&__logo {
 		font-size: 3rem;
+		color: $orange-color;
 	}
 
 	&__list {
@@ -29,6 +30,12 @@
 	}
 
 	&__item {
+		margin: 0 .6rem;
 		cursor: pointer;
+
+		i {
+			font-size: 3rem;
+			color: $orange-color;
+		}
 	}
 }

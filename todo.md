@@ -1,3 +1,5 @@
+>1. Unify Router client and server side
+>1. 
 # Components flow
 
 ```mermaid
@@ -24,7 +26,7 @@ graph TD;
 graph TD;
     App --> Header
     App --> NavRight
-    App --> Card
+    App --> PostDetail
 
     NavRight --> SignInForm
     NavRight --> SignUpForm
