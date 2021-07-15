@@ -3,12 +3,7 @@ import Header from './components/header/Header';
 import NavRight from './components/navRight/NavRight';
 import PostSection from './components/postSection/PostSection';
 import PostDetail from './pages/PostDetail';
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link
- } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
 	return (
