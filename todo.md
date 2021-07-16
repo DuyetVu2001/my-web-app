@@ -1,5 +1,13 @@
+>To day
+>1. Check phone book
+>1. Memory card recovery
+
+>1. Use redux
+>1. Code CRUD, server - client
 >1. Unify Router client and server side
->1. 
+
+
+
 # Components flow
 
 ```mermaid
