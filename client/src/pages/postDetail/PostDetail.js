@@ -32,13 +32,13 @@ const PostDetail = () => {
 								{/* Contact */}
 								<div className="post-detail__contacts">
 									<span className="post-detail__icon">
-										<i class="fab fa-instagram-square"></i>
+										<i className="fab fa-instagram-square"></i>
 									</span>
 									<span className="post-detail__icon">
-										<i class="fab fa-twitter-square"></i>
+										<i className="fab fa-twitter-square"></i>
 									</span>
 									<span className="post-detail__icon">
-										<i class="fab fa-facebook-square"></i>
+										<i className="fab fa-facebook-square"></i>
 									</span>
 								</div>
 								{/* End */}

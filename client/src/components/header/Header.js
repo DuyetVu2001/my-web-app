@@ -19,11 +19,11 @@ const Header = () => {
 				<div className="header__list">
 					<div className="header__item">
 						<Link to="/create">
-							<i class="fas fa-folder-plus"></i>
+							<i className="fas fa-folder-plus"></i>
 						</Link>
 					</div>
 					<div className="header__item" onClick={showNavRight}>
-						<i class="fas fa-cog"></i>
+						<i className="fas fa-cog"></i>
 					</div>
 				</div>
 			</nav>

@@ -31,7 +31,7 @@ const NavRight = () => {
 								className="sign-in__close"
 								onClick={() => hideNavRight(false)}
 							>
-								<i class="fas fa-times-circle"></i>
+								<i className="fas fa-times-circle"></i>
 							</div>
 
 							{isSignIn ? (
