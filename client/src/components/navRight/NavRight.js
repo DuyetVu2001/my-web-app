@@ -1,12 +1,13 @@
-import React, { useState, useCallback, useContext } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './NavRight.scss';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
-import { NavRightContext } from '../../contexts/NavRightContext';
+import { hideNavRight, selectorNavRight } from '../../redux/reducers/navRightReducers';
 
 const NavRight = () => {
-	// NavRight context
-	const { toggleNavRight, hideNavRight } = useContext(NavRightContext);
+	const navRight = useSelector(selectorNavRight);
+	const dispatch = useDispatch();
 
 	// Toggle sign-in/out form
 	const [isSignIn, setIsSignIn] = useState(true);
@@ -16,10 +17,10 @@ const NavRight = () => {
 
 	return (
 		<>
-			{toggleNavRight ? (
+			{navRight ? (
 				<>
 					{/* Overlay */}
-					<div id="overlay" onClick={() => hideNavRight(false)} />
+					<div id="overlay" onClick={() => dispatch(hideNavRight())} />
 					{/* End overlay */}
 
 					<div className="sign-in">
@@ -29,7 +30,7 @@ const NavRight = () => {
 						<div className="sign-in__container">
 							<div
 								className="sign-in__close"
-								onClick={() => hideNavRight(false)}
+								onClick={() => dispatch(hideNavRight())}
 							>
 								<i className="fas fa-times-circle"></i>
 							</div>

@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import './Header.scss';
 import Slider from './Slider';
-import { NavRightContext } from '../../contexts/NavRightContext';
 import { Link } from 'react-router-dom';
+import { showNavRight } from '../../redux/reducers/navRightReducers';
 
 const Header = () => {
-	// Auth context
-	const { showNavRight } = useContext(NavRightContext);
+	const dispatch = useDispatch();
 
 	return (
 		<header className="header">
@@ -22,7 +22,10 @@ const Header = () => {
 							<i className="fas fa-folder-plus"></i>
 						</Link>
 					</div>
-					<div className="header__item" onClick={showNavRight}>
+					<div
+						className="header__item"
+						onClick={() => dispatch(showNavRight())}
+					>
 						<i className="fas fa-cog"></i>
 					</div>
 				</div>

@@ -80,10 +80,10 @@ const Slider = () => {
 
 			{/* slide next/previous buttons */}
 			<span className="slider__prev-slide" onClick={prevSlide}>
-				<i class="fas fa-arrow-circle-left"></i>
+				<i className="fas fa-arrow-circle-left"></i>
 			</span>
 			<span className="slider__next-slide" onClick={nextSlide}>
-				<i class="fas fa-arrow-circle-right"></i>
+				<i className="fas fa-arrow-circle-right"></i>
 			</span>
 		</div>
 	);

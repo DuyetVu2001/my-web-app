@@ -6,8 +6,6 @@
 >1. Code CRUD, server - client
 >1. Unify Router client and server side
 
-
-
 # Components flow
 
 ```mermaid
