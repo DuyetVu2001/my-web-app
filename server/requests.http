@@ -1,13 +1,41 @@
-GET http://localhost:5000/cards
+GET http://localhost:5000/posts/
 
 ###
-POST http://localhost:5000/cards
+POST http://localhost:5000/posts/create
+Content-Type: application/json
+
+{
+  "title": "Hello world",
+  "time_read": 4,
+  "desc": "test",
+  "img": "chrome://new-tab-page/icons/google_logo.svg",
+  "author": "CoderX",
+  "content": "Test content",
+  "genre": "IT"
+}
 
 ###
-PUT http://localhost:5000/cards/update
+PUT http://localhost:5000/posts/update
+Content-Type: application/json
+
+{
+  "_id": "60f26cd93eaa2e5cda295fd1",
+  "title": "update",
+  "time_read": 4,
+  "desc": "test",
+  "img": "chrome://new-tab-page/icons/google_logo.svg",
+  "author": "CoderX",
+  "content": "Test content",
+  "genre": "IT"
+}
 
 ###
-DELETE http://localhost:5000/cards/delete
+DELETE http://localhost:5000/posts/delete
+Content-Type: application/json
+
+{
+  "_id": "60f26cfb3eaa2e5cda295fd5"
+}
 
 ###
 POST http://localhost:5000/user/sign-up

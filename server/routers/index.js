@@ -1,8 +1,8 @@
-import cardRouter from './card.js';
+import postRouter from './post.js';
 import userRouter from './user.js';
 
 const route = (app) => {
-	app.use('/cards', cardRouter);
+	app.use('/posts', postRouter);
 	app.use('/user', userRouter);
 };
 
