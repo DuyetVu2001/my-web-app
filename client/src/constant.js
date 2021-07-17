@@ -7,12 +7,4 @@ export const INIT_STATE = {
 	navRight: false,
 };
 
-export const ACTIONS = {
-	posts: {
-		// CRUD
-		CREATE_POST: 'CREATE_POST',
-		READ_POSTS: 'READ_POSTS',
-		UPDATE_POST: 'UPDATE_POST',
-		DELETE_POST: 'DELETE_POST',
-	},
-};
+export const API_URL = 'http://localhost:5000';

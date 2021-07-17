@@ -1,5 +1,6 @@
 import React, { createContext } from 'react';
 import axios from 'axios';
+import { API_URL } from '../constant';
 
 export const AuthContext = createContext();
 
@@ -10,7 +11,7 @@ const AuthProvider = ({ children }) => {
 		try {
 			// Post sign in data to server and receive res
 			const res = await axios.post(
-				'http://localhost:5000/user/sign-in',
+				`${API_URL}/user/sign-in`,
 				signInData
 			);
 
@@ -25,7 +26,7 @@ const AuthProvider = ({ children }) => {
 	const signUpFormSubmit = async (signUpData) => {
 		// Post sign up data to server and receive res
 		const res = await axios.post(
-			'http://localhost:5000/user/sign-up',
+			`${API_URL}/user/sign-up`,
 			signUpData
 		);
 

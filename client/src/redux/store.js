@@ -4,7 +4,7 @@ import navRightReducers from './reducers/navRightReducers';
 
 const store = configureStore({
 	reducer: {
-    postReducers,
+		posts: postReducers,
 		navRight: navRightReducers,
 	},
 });

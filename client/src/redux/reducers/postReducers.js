@@ -1,49 +1,56 @@
-// import { createSlice } from '@reduxjs/toolkit';
-import { INIT_STATE, ACTIONS } from '../../constant';
+import { createSlice } from '@reduxjs/toolkit';
+import { API_URL, INIT_STATE } from '../../constant';
+import axios from 'axios';
 
-const { CREATE_POST, READ_POSTS, UPDATE_POST, DELETE_POST } = ACTIONS.posts;
+const postsSlice = createSlice({
+	name: 'posts',
+	initialState: INIT_STATE.posts,
+	reducers: {
+		createPost: (state, action) => {
+			state.data.push(action.payload);
+		},
 
-const postReducers = (state = INIT_STATE.posts, action) => {
-	const { type, payload } = action;
+		readPosts: (state, action) => {
+			state.data = action.payload;
+		},
 
-	switch (type) {
-		case CREATE_POST: {
-			return {
-				...state,
-				isLoading: true,
-				data: [...state.data, payload.data],
-			};
-		}
+		updatePost: (state, action) => {
+			state.data.map((post) =>
+				post._id !== action.payload._id ? post : action.payload
+			);
+		},
 
-		case READ_POSTS: {
-			return {
-				...state,
-				isLoading: true,
-				data: payload.data,
-			};
-		}
+		deletePost: (state, action) => {
+			state.data.filter((post) => post._id !== action.payload._id);
+		},
+	},
+});
 
-		case UPDATE_POST: {
-			return {
-				...state,
-				isLoading: true,
-				data: state.data.map((post) =>
-					state.data._id === payload.data._id ? payload.data : post
-				),
-			};
-		}
+export const { createPost, readPosts, updatePost, deletePost } =
+	postsSlice.actions;
 
-		case DELETE_POST: {
-			return {
-				...state,
-				isLoading: true,
-				data: state.data.filter((post) => post._id !== payload.data),
-			};
-		}
+export const fetchPosts = () => async (dispatch) => {
+	try {
+		// get data from server
+		const res = await axios.get(`${API_URL}/posts`);
 
-		default:
-			return state;
+		// dispatch to state
+		dispatch(readPosts(res.data.data));
+	} catch (error) {
+		console.log('errors: ', error);
 	}
 };
 
-export default postReducers;
+export const createPostAsync = (data) => async dispatch => {
+	try {
+		// Send data to server
+		await axios.post(`${API_URL}/posts/create`, data);
+
+		// dispatch
+		dispatch(createPost(data));
+	} catch (error) {
+		console.log('errors: ', error);
+	}
+}
+
+export default postsSlice.reducer;
