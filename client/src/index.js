@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import AuthProvider from './contexts/AuthContext';
-import store from './redux/store';
+import store, { persistor } from './redux/store';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
 	<Provider store={store}>
-		<AuthProvider>
-			<App />
-		</AuthProvider>
+		<PersistGate loading={null} persistor={persistor}>
+			<AuthProvider>
+				<App />
+			</AuthProvider>
+		</PersistGate>
 	</Provider>,
 	document.getElementById('root')
 );
