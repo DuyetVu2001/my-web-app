@@ -11,13 +11,15 @@ function App() {
 		<Router>
 			<div className="app">
 				<Switch>
-					<Route path="/create" component={PostCreate} />
-					<Route path="/detail" component={PostDetail} />
+					<Route path="/create/:id" children={<PostCreate />} />
+					<Route path="/create" children={<PostCreate />} />
+					<Route path="/detail/:id" children={<PostDetail />} />
 					<Route path="/">
 						<Header />
 						<NavRight />
 						<PostSection />
 					</Route>
+					<PostSection />
 				</Switch>
 			</div>
 		</Router>

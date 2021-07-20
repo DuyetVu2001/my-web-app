@@ -8,7 +8,7 @@ Content-Type: application/json
   "title": "Hello world",
   "time_read": 4,
   "desc": "test",
-  "img": "chrome://new-tab-page/icons/google_logo.svg",
+  "img": "https://image.freepik.com/free-vector/cute-girl-co…e-elements-cartoon-art-illustration_56104-652.jpg",
   "author": "CoderX",
   "content": "Test content",
   "genre": "IT"
@@ -34,7 +34,7 @@ DELETE http://localhost:5000/posts/delete
 Content-Type: application/json
 
 {
-  "_id": "60f26cfb3eaa2e5cda295fd5"
+  "_id": "60f3796d90d19e1c0a5c7732"
 }
 
 ###

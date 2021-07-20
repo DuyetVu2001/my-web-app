@@ -56,7 +56,7 @@ export const deletePost = async (req, res) => {
 		const post_id = req.body._id;
 
 		// Delete
-		await Post.findByIdAndRemove(post_id);
+		await Post.findOneAndDelete(post_id);
 
 		// Return notification to client
 		res.json({ success: true });

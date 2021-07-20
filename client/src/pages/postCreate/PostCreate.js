@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createPostAsync } from '../../redux/reducers/postReducers';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import {
+	createPostAsync,
+	updatePostAsync,
+} from '../../redux/reducers/postReducers';
 import './PostCreate.scss';
+import { selectorPosts } from '../../redux/reducers/postReducers';
 
 const PostCreateForm = () => {
-	const [data, setData] = useState({
+	const [post, setPost] = useState({
 		img: '',
 		title: '',
 		desc: '',
@@ -13,13 +18,23 @@ const PostCreateForm = () => {
 		time_read: 0,
 	});
 
-	const { img, title, desc, content, genre, time_read } = data;
+	const { id } = useParams();
+
+	const postsData = useSelector(selectorPosts);
+
+	useEffect(() => {
+		if (id) {
+			setPost(postsData.find((post) => post._id === id));
+		}
+	}, [postsData, id]);
+
+	const { img, title, desc, content, genre, time_read } = post;
 
 	const dispatch = useDispatch();
 
 	const onChange = (e) => {
-		setData({
-			...data,
+		setPost({
+			...post,
 			[e.target.name]: e.target.value,
 		});
 	};
@@ -28,17 +43,21 @@ const PostCreateForm = () => {
 		e.preventDefault();
 
 		// Send data to server with async function
-		dispatch(createPostAsync(data));
+		if (id) {
+			dispatch(updatePostAsync(post));
+		} else {
+			dispatch(createPostAsync(post));
+			// Reset fields input
+			setPost({
+				img: '',
+				title: '',
+				desc: '',
+				content: '',
+				genre: '',
+				time_read: 0,
+			});
+		}
 
-		// Reset fields input
-		setData({
-			img: '',
-			title: '',
-			desc: '',
-			content: '',
-			genre: '',
-			time_read: 0,
-		});
 	};
 
 	return (
@@ -58,6 +77,7 @@ const PostCreateForm = () => {
 
 				<form className="post-create__form" onSubmit={submitForm}>
 					<input
+						required
 						type="text"
 						name="title"
 						placeholder="Title"
@@ -65,6 +85,7 @@ const PostCreateForm = () => {
 						onChange={onChange}
 					/>
 					<input
+						required
 						type="text"
 						name="img"
 						placeholder="Image url here"
@@ -72,6 +93,7 @@ const PostCreateForm = () => {
 						onChange={onChange}
 					/>
 					<input
+						required
 						type="text"
 						name="genre"
 						placeholder="Genre"
@@ -79,6 +101,7 @@ const PostCreateForm = () => {
 						onChange={onChange}
 					/>
 					<input
+						required
 						type="number"
 						name="time_read"
 						placeholder="Time read (minute)"
@@ -86,6 +109,7 @@ const PostCreateForm = () => {
 						onChange={onChange}
 					/>
 					<textarea
+						required
 						type="text"
 						name="desc"
 						placeholder="Description"
@@ -93,6 +117,7 @@ const PostCreateForm = () => {
 						onChange={onChange}
 					/>
 					<textarea
+						required
 						type="text"
 						name="content"
 						placeholder="Content..."

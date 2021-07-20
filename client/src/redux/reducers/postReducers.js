@@ -15,19 +15,21 @@ const postsSlice = createSlice({
 		},
 
 		updatePost: (state, action) => {
-			state.data.map((post) =>
-				post._id !== action.payload._id ? post : action.payload
+			state.data = state.data.map(
+				(post) =>
+					(state = post._id !== action.payload._id ? post : action.payload)
 			);
 		},
 
 		deletePost: (state, action) => {
-			state.data.filter((post) => post._id !== action.payload._id);
+			state.data = state.data.filter((post) => post._id !== action.payload);
 		},
 	},
 });
 
-export const { createPost, readPosts, updatePost, deletePost } =
-	postsSlice.actions;
+const { actions, reducer } = postsSlice;
+
+export const { createPost, readPosts, updatePost, deletePost } = actions;
 
 export const fetchPosts = () => async (dispatch) => {
 	try {
@@ -41,7 +43,7 @@ export const fetchPosts = () => async (dispatch) => {
 	}
 };
 
-export const createPostAsync = (data) => async dispatch => {
+export const createPostAsync = (data) => async (dispatch) => {
 	try {
 		// Send data to server
 		await axios.post(`${API_URL}/posts/create`, data);
@@ -51,6 +53,32 @@ export const createPostAsync = (data) => async dispatch => {
 	} catch (error) {
 		console.log('errors: ', error);
 	}
-}
+};
 
-export default postsSlice.reducer;
+export const updatePostAsync = (data) => async (dispatch) => {
+	try {
+		// Send data to server
+		await axios.put(`${API_URL}/posts/update`, data);
+
+		// dispatch
+		dispatch(updatePost(data));
+	} catch (error) {
+		console.log('errors: ', error);
+	}
+};
+
+export const deletePostAsync = (post_id) => async (dispatch) => {
+	try {
+		// Send post_id to server
+		await axios.delete(`${API_URL}/posts/delete`, { _id: post_id });
+
+		// dispatch
+		dispatch(deletePost(post_id));
+	} catch (error) {
+		console.log('errors: ', error);
+	}
+};
+
+export const selectorPosts = (state) => state.posts.data;
+
+export default reducer;

@@ -1,6 +1,8 @@
 @import '../../assets/sass/variables';
 
 .post {
+	position: relative;
+
 	display: flex;
 	flex-direction: column;
 
@@ -13,8 +15,31 @@
 
 	overflow: hidden;
 
+	&__option {
+		position: absolute;
+		right: 1.6rem;
+		top: 1.6rem;
+		z-index: 1;
+
+		cursor: pointer;
+
+		i {
+			font-size: 2rem;
+			color: $orange-color;
+		}
+
+		div {
+			background-color: $blue-color;
+			box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+				rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+			p {
+				margin: 2rem 0;
+			}
+		}
+	}
+
 	&__img {
-      max-width: 100%;
+		max-width: 100%;
 		position: relative;
 		aspect-ratio: 17/9;
 		overflow: hidden;
@@ -76,8 +101,8 @@
 		margin-right: 0.8rem;
 		color: $pink-color;
 
-      i {
-         font-size: 2.4rem;
-      }
+		i {
+			font-size: 2.4rem;
+		}
 	}
 }
