@@ -6,14 +6,14 @@ import SignUpForm from './SignUpForm';
 import { hideNavRight, selectorNavRight } from '../../redux/reducers/navRightReducers';
 
 const NavRight = () => {
-	const navRight = useSelector(selectorNavRight);
-	const dispatch = useDispatch();
-
 	// Toggle sign-in/out form
 	const [isSignIn, setIsSignIn] = useState(true);
 	const toggleSignForm = useCallback(() => {
 		setIsSignIn(!isSignIn);
 	}, [isSignIn]);
+
+	const navRight = useSelector(selectorNavRight);
+	const dispatch = useDispatch();
 
 	return (
 		<>

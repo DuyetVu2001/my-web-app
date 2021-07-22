@@ -68,7 +68,7 @@
 		margin-bottom: 3.2rem;
 
 		font-size: 3.4rem;
-		color: white;
+		color: $text-white-color;
 
 		&::after {
 			content: '';
@@ -79,7 +79,7 @@
 			height: 0.6rem;
 			width: 14rem;
 
-			background: white;
+			background-color: white;
 		}
 	}
 
@@ -103,7 +103,7 @@
 			background-color: rgba(255, 255, 255, 0.15);
 
 			&::placeholder {
-				color: white;
+				color: $text-white-color;
 				font-weight: 600;
 			}
 		}

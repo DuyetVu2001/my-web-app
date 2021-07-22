@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Img1 from '../../assets/img/dog.jpg';
-import Img2 from '../../assets/img/web.png';
-import Img3 from '../../assets/img/color.jpg';
-import Img4 from '../../assets/img/Thao-Tun.jpg';
+import Img1 from '../../../assets/img/dog.jpg';
+import Img2 from '../../../assets/img/web.png';
+import Img3 from '../../../assets/img/color.jpg';
+import Img4 from '../../../assets/img/Thao-Tun.jpg';
 import './Slider.scss';
 
 const Slider = () => {
@@ -11,15 +11,13 @@ const Slider = () => {
 	const slideLength = slideData.length;
 	const timeoutRef = useRef(null);
 
-	// there are no photos
-	// if (!Array.isArr(slideData) || slideLength <= 0) { return null;}
-
 	const resetTimeout = () => {
 		if (timeoutRef.current) {
 			clearTimeout(timeoutRef.current);
 		}
 	};
 
+	// Auto slide
 	useEffect(() => {
 		resetTimeout();
 
@@ -27,20 +25,14 @@ const Slider = () => {
 			setCurrent(current === slideLength - 1 ? 0 : current + 1);
 		}, 20000);
 
+		// When component unmount
 		return () => {
 			resetTimeout();
 		};
 	}, [current, slideLength]);
 
-	const nextSlide = () => {
-		setCurrent(current === slideLength - 1 ? 0 : current + 1);
-	};
-
-	const prevSlide = () => {
-		setCurrent(current === 0 ? slideLength - 1 : current - 1);
-	};
-
-	const customSlide = (custom) => {
+	// When click on dot
+	const onDotClick = (custom) => {
 		if (custom >= slideLength || custom < 0) {
 			setCurrent(0);
 		} else {
@@ -62,7 +54,7 @@ const Slider = () => {
 				);
 			})}
 
-			{/* dots */}
+			{/* List dot */}
 			<ul className="slider__dot-list">
 				{/* rend dot list */}
 				{slideData.map((data, index) => (
@@ -71,20 +63,12 @@ const Slider = () => {
 							index === current ? 'slider__dot-item active' : 'slider__dot-item'
 						}
 						onClick={() => {
-							customSlide(index);
+							onDotClick(index);
 						}}
 						key={index}
 					></li>
 				))}
 			</ul>
-
-			{/* slide next/previous buttons */}
-			<span className="slider__prev-slide" onClick={prevSlide}>
-				<i className="fas fa-arrow-circle-left"></i>
-			</span>
-			<span className="slider__next-slide" onClick={nextSlide}>
-				<i className="fas fa-arrow-circle-right"></i>
-			</span>
 		</div>
 	);
 };

@@ -1,0 +1,37 @@
+@import '../../../assets/sass/variables';
+
+.filter {
+	margin-top: 8rem;
+
+	h3 {
+		font-size: 4.8rem;
+		letter-spacing: 0.2rem;
+	}
+
+	h3,
+	li {
+		color: $text-dark-color;
+	}
+
+	ul {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+
+		height: 7.2rem;
+		width: 72rem;
+		margin: 5.6rem 0 7.2rem;
+		border-radius: 4rem;
+
+		list-style: none;
+
+		background-color: $bg-gray-color;
+
+		li {
+      padding: .8rem 1.2rem;
+			font-weight: 500;
+			font-size: 1.8rem;
+      cursor: pointer;
+		}
+	}
+}

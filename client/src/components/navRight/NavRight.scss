@@ -71,7 +71,7 @@
 
 		margin-bottom: 2rem;
 
-		color: white;
+		color: $text-white-color;
 
 		font-size: 2.6rem;
 		text-transform: capitalize;
@@ -103,18 +103,18 @@
 
 		font-weight: 600;
 
-		color: white;
 		background: rgba(255, 255, 255, 0.2);
 
+		&,
 		&::placeholder {
-			color: white;
+			color: $text-white-color;
 		}
 
 		&[type='submit'] {
 			width: 10rem;
 
-			background: white;
-			color: black;
+			background-color: #fff;
+			color: $text-dark-color;
 
 			cursor: pointer;
 		}

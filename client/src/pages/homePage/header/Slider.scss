@@ -1,4 +1,4 @@
-@import '../../assets/sass/variables';
+@import '../../../assets/sass/variables';
 
 .slider {
 	&__tag {
@@ -14,42 +14,18 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		width: 100%;
-	}
-
-	// next/previous buttons
-	&__next-slide,
-	&__prev-slide {
-		cursor: pointer;
-		color: $blue-color;
-
-		i {
-			font-size: 4rem;
-			font-weight: 900;
-		}
-
-		&:hover {
-			opacity: 0.8;
-		}
-	}
-
-	&__next-slide {
-		@include center-vertical;
-		right: 2rem;
-	}
-
-	&__prev-slide {
-		@include center-vertical;
-		left: 2rem;
+		// width: 100%;
 	}
 
 	// dots
 	&__dot-list {
 		@include center-horizontal;
-		list-style-type: none;
+		bottom: 4%;
+		z-index: 1;
 		display: flex;
+
+		list-style-type: none;
 		align-items: baseline;
-		bottom: 16%;
 	}
 
 	&__dot-item {
