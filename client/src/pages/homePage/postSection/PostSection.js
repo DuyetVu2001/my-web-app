@@ -13,11 +13,13 @@ const PostSection = () => {
 	const postsData = useSelector(selectorPosts);
 	const dispatch = useDispatch();
 
-	const [genres, setGenres] = useState([]);
-
+	// fetch data from server
 	useEffect(() => {
 		dispatch(fetchPosts());
 	}, [dispatch]);
+
+	// filter state
+	const [genres, setGenres] = useState([]);
 
 	// Filter genre
 	const clickToFilter = (e) => {
