@@ -57,78 +57,80 @@ const PostCreateForm = () => {
 				time_read: 0,
 			});
 		}
-
 	};
 
 	return (
-		<div className="post-create">
-			<div className="color"></div>
-			<div className="color"></div>
-			<div className="color"></div>
+		<>
+			<div className="post-create">
+				<div className="color"></div>
+				<div className="color"></div>
+				<div className="color"></div>
 
-			<div className="box"></div>
-			<div className="box"></div>
-			<div className="box"></div>
-			<div className="box"></div>
-			<div className="box"></div>
+				<div className="box"></div>
+				<div className="box"></div>
+				<div className="box"></div>
+				<div className="box"></div>
+				<div className="box"></div>
 
-			<div className="post-create__box">
-				<h3>Create Form</h3>
+				<div className="post-create__box">
+					<h3>Create Form</h3>
 
-				<form className="post-create__form" onSubmit={submitForm}>
-					<input
-						required
-						type="text"
-						name="title"
-						placeholder="Title"
-						value={title}
-						onChange={onChange}
-					/>
-					<input
-						required
-						type="text"
-						name="img"
-						placeholder="Image url here"
-						value={img}
-						onChange={onChange}
-					/>
-					<input
-						required
-						type="text"
-						name="genre"
-						placeholder="Genre"
-						value={genre}
-						onChange={onChange}
-					/>
-					<input
-						required
-						type="number"
-						name="time_read"
-						placeholder="Time read (minute)"
-						value={time_read}
-						onChange={onChange}
-					/>
-					<textarea
-						required
-						type="text"
-						name="desc"
-						placeholder="Description"
-						value={desc}
-						onChange={onChange}
-					/>
-					<textarea
-						required
-						type="text"
-						name="content"
-						placeholder="Content..."
-						value={content}
-						onChange={onChange}
-					/>
-					<input type="submit" name="submit" value="Submit" />
-				</form>
+					<form className="post-create__form" onSubmit={submitForm}>
+						<input
+							required
+							type="text"
+							name="title"
+							placeholder="Title"
+							value={title}
+							onChange={onChange}
+						/>
+						<input
+							required
+							type="text"
+							name="img"
+							placeholder="Image url here"
+							value={img}
+							onChange={onChange}
+						/>
+						<input
+							required
+							type="text"
+							name="genre"
+							placeholder="Genre"
+							value={genre}
+							onChange={onChange}
+						/>
+						<input
+							required
+							type="number"
+							name="time_read"
+							placeholder="Time read (minute)"
+							value={time_read}
+							onChange={onChange}
+						/>
+						<textarea
+							required
+							type="text"
+							name="desc"
+							placeholder="Description"
+							value={desc}
+							onChange={onChange}
+						/>
+						<textarea
+							required
+							type="text"
+							name="content"
+							placeholder="Content..."
+							value={content}
+							onChange={onChange}
+						/>
+						<input type="submit" name="submit" value="Submit" />
+					</form>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
 export default PostCreateForm;
+
