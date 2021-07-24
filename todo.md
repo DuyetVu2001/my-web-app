@@ -1,5 +1,6 @@
->1. rout/:slug
->1. Unify Router client and server side
+> 1.  save token in local storage
+> 1.  form sign in/ sign up
+> 1.  transform nav and post when user login or admin log in
 
 # Components flow
 
@@ -15,7 +16,7 @@ graph TD;
 graph TD;
     AuthContext --> user
     AuthContext --> handle_form_submit
-    
+
     user --> signIn
     user --> signOut
 
@@ -42,4 +43,3 @@ graph TD;
     post --> genre
     post --> time_read
 ```
-

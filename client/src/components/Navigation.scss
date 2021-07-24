@@ -5,7 +5,7 @@
 	top: 2.4rem;
 	left: 0;
 	right: 0;
-	z-index: 1;
+	z-index: 2;
 
 	&__user,
 	&__routes,
@@ -20,11 +20,11 @@
 	h1 {
 		font-weight: 600;
 		font-size: 18px;
-    
-    color: $text-white-color;
+
+		color: $text-white-color;
 	}
 
-	h1[class='nav__logo'] {
+	&__logo > a {
 		font-size: 3rem;
 		font-weight: bold;
 	}

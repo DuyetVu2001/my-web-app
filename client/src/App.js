@@ -1,38 +1,36 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import PostCreate from './pages/postCreate/PostCreate';
-import Navigation from './components/Navigation';
-import HomePage from './pages/homePage/HomePage';
-import NavRight from './components/navRight/NavRight';
 import Footer from './components/Footer';
+import Navigation from './components/Navigation';
+import NavRight from './components/navRight/NavRight';
+import HomePage from './pages/homePage/HomePage';
 import PostDetailPage from './pages/postDetailPage/PostDetailPage';
+import PostCreatePage from './pages/postCreatePage/PostCreatePage';
 
 function App() {
 	return (
 		<Router>
 			<div className="app">
+				{/* Nav */}
+				<Navigation />
 				<NavRight />
-
 				<Switch>
-					<Route path="/create/:id" children={<PostCreate />} />
-					<Route path="/create" children={<PostCreate />} />
+					{/* Create, update pages */}
+					<Route path="/update/:id" exact component={PostCreatePage} />
+					<Route path="/create" exact component={PostCreatePage} />
 
 					{/* Detail page */}
 					<Route path="/detail/:id">
-						{/* Nav */}
-						<Navigation />
 						<PostDetailPage />
-						{/* Footer */}
-						<Footer />
 					</Route>
+
 					{/* Home page */}
 					<Route path="/">
-						<Navigation />
 						<HomePage />
-						<Footer />
 					</Route>
 				</Switch>
+				{/* Footer */}
+				<Footer />
 			</div>
 		</Router>
 	);

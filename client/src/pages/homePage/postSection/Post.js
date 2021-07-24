@@ -56,7 +56,7 @@ const Post = ({ post }) => {
 					{/* toggle menu */}
 					{isSetting ? (
 						<div>
-							<Link to={`/create/${_id}`}>Update</Link>
+							<Link to={`/update/${_id}`}>Update</Link>
 							<p onClick={onClickDeleteBtn}>Delete</p>
 						</div>
 					) : (

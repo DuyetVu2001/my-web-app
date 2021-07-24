@@ -10,7 +10,7 @@ const Navigation = () => {
 	// Click to show the NavRight component
 	const onSettingClick = () => {
 		dispatch(showNavRight());
-	}
+	};
 
 	return (
 		<nav className="nav">
@@ -19,7 +19,9 @@ const Navigation = () => {
 					<Grid item sx={12} md={12}>
 						<div className="nav__container">
 							{/* Logo */}
-							<h1 className="nav__logo">DuyetVu</h1>
+							<h1 className="nav__logo">
+								<Link to={'/'}>DuyetVu</Link>
+							</h1>
 
 							{/* Routers */}
 							<div className="nav__routes">
