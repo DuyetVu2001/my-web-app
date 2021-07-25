@@ -1,16 +1,17 @@
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Container, Grid } from '@material-ui/core';
-import './Navigation.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import {
+	selectorIsAuthenticated,
+	signOutAuth,
+} from '../redux/reducers/authReducers';
 import { showNavRight } from '../redux/reducers/navRightReducers';
+import './Navigation.scss';
 
 const Navigation = () => {
 	const dispatch = useDispatch();
 
-	// Click to show the NavRight component
-	const onSettingClick = () => {
-		dispatch(showNavRight());
-	};
+	const isAuthenticated = useSelector(selectorIsAuthenticated);
 
 	return (
 		<nav className="nav">
@@ -32,14 +33,35 @@ const Navigation = () => {
 									<Link to={'/create'}>Create</Link>
 								</p>
 								<p>About</p>
-								<p onClick={onSettingClick}>Setting</p>
+								<p>Setting</p>
 							</div>
 
 							{/* User (sign in , sign up, admin, comment) */}
-							<div className="nav__user">
-								<p className="nav__sign-up">Sign Up</p>
-								<p className="nav__sign-in">Sign In</p>
-							</div>
+							{isAuthenticated ? (
+								<div className="nav__user">
+									<p
+										className="nav__sign-in"
+										onClick={() => dispatch(signOutAuth())}
+									>
+										Sign Out
+									</p>
+								</div>
+							) : (
+								<div className="nav__user">
+									<p
+										className="nav__sign-up"
+										onClick={() => dispatch(showNavRight())}
+									>
+										Sign Up
+									</p>
+									<p
+										className="nav__sign-in"
+										onClick={() => dispatch(showNavRight())}
+									>
+										Sign In
+									</p>
+								</div>
+							)}
 						</div>
 					</Grid>
 				</Grid>

@@ -1,9 +1,9 @@
-import { useState, useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signUpFormSubmit } from '../../redux/reducers/authReducers';
 
 const SignUpForm = ({ toggleSignForm }) => {
-	// useContext to get function handle
-	const { signUpFormSubmit } = useContext(AuthContext);
+	const dispatch = useDispatch();
 
 	//@ Handle sign in state
 	// Username and password state
@@ -35,7 +35,7 @@ const SignUpForm = ({ toggleSignForm }) => {
 		}
 
 		// Send data to server
-		signUpFormSubmit(signUpData);
+		dispatch(signUpFormSubmit(signUpData));
 
 		// Reset value input after submit
 		setSignUpData({

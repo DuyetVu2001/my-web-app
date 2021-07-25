@@ -1,18 +1,18 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import postReducers from './reducers/postReducers';
-import navRightReducers from './reducers/navRightReducers';
-
 import {
-	persistStore,
-	persistReducer,
 	FLUSH,
-	REHYDRATE,
 	PAUSE,
 	PERSIST,
+	persistReducer,
+	persistStore,
 	PURGE,
 	REGISTER,
+	REHYDRATE,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import authReducers from './reducers/authReducers';
+import navRightReducers from './reducers/navRightReducers';
+import postReducers from './reducers/postReducers';
 
 const persistConfig = {
 	key: 'root',
@@ -20,17 +20,13 @@ const persistConfig = {
 	storage,
 };
 
-
-
 const reducer = combineReducers({
 	posts: postReducers,
 	navRight: navRightReducers,
-})
+	auth: authReducers,
+});
 
-const persistedReducer = persistReducer(
-	persistConfig,
-	reducer
-);
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 const store = configureStore({
 	reducer: persistedReducer,
@@ -41,12 +37,6 @@ const store = configureStore({
 			},
 		}),
 });
-
-// const store = configureStore({
-// 	reducer: {
-// 		posts: postReducers,
-// 	}
-// });
 
 export const persistor = persistStore(store);
 
