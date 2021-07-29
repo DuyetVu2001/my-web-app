@@ -32,8 +32,8 @@ const Navigation = () => {
 								<p>
 									<Link to={'/create'}>Create</Link>
 								</p>
-								<p>About</p>
-								<p>Setting</p>
+								{/* <p>About</p>
+								<p>Setting</p> */}
 							</div>
 
 							{/* User (sign in , sign up, admin, comment) */}
@@ -48,17 +48,23 @@ const Navigation = () => {
 								</div>
 							) : (
 								<div className="nav__user">
-									<p
+									{/* <p
 										className="nav__sign-up"
 										onClick={() => dispatch(showNavRight())}
 									>
 										Sign Up
-									</p>
-									<p
+									</p> */}
+									{/* <p
 										className="nav__sign-in"
 										onClick={() => dispatch(showNavRight())}
 									>
 										Sign In
+									</p> */}
+									<p
+										className="nav__sign-in"
+										onClick={() => dispatch(showNavRight())}
+									>
+										Account
 									</p>
 								</div>
 							)}

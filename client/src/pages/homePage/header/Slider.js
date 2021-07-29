@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import Img1 from '../../../assets/img/dog.jpg';
 import Img2 from '../../../assets/img/web.png';
 import Img3 from '../../../assets/img/color.jpg';
-import Img4 from '../../../assets/img/Thao-Tun.jpg';
+// import Img4 from '../../../assets/img/Thao-Tun.jpg';
 import './Slider.scss';
 
 const Slider = () => {
 	const [current, setCurrent] = useState(0);
-	const slideData = [Img1, Img2, Img3, Img4];
+	const slideData = [Img1, Img2, Img3];
 	const slideLength = slideData.length;
 	const timeoutRef = useRef(null);
 
@@ -23,7 +23,7 @@ const Slider = () => {
 
 		timeoutRef.current = setTimeout(() => {
 			setCurrent(current === slideLength - 1 ? 0 : current + 1);
-		}, 20000);
+		}, 3000);
 
 		// When component unmount
 		return () => {
