@@ -69,6 +69,7 @@ export const userSignIn = async (req, res) => {
 			success: true,
 			message: 'User signed in successfully!',
 			accessToken,
+			user,
 		});
 	} catch (error) {
 		console.log(error);
