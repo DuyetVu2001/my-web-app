@@ -9,7 +9,7 @@ import {
 } from '../../../redux/reducers/postReducers';
 import Filter from './Filter';
 
-const PostSection = () => {
+const PostList = () => {
 	const postsData = useSelector(selectorPosts);
 	const dispatch = useDispatch();
 
@@ -64,4 +64,4 @@ const PostSection = () => {
 	);
 };
 
-export default PostSection;
+export default PostList;
