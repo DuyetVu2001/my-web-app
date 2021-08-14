@@ -1,4 +1,4 @@
-function Input(props) {
+function InputCustom(props) {
 	const {
 		field = 'input',
 		type,
@@ -10,11 +10,11 @@ function Input(props) {
 		color,
 		fontWeight,
 		textAlign,
-    fontSize,
+		fontSize,
 		width = '100%',
 		height = '100%',
 		borderRadius = '2rem',
-    margin = '0 0 1.6rem 0',
+		margin = '0 0 1.6rem 0',
 		padding = '2rem',
 	} = props;
 
@@ -22,7 +22,7 @@ function Input(props) {
 		width: `${width}`,
 		height: `${height}`,
 		padding: `${padding}`,
-    margin: `${margin}`,
+		margin: `${margin}`,
 
 		border: 'none',
 		borderRadius: `${borderRadius}`,
@@ -59,4 +59,4 @@ function Input(props) {
 	);
 }
 
-export default Input;
+export default InputCustom;

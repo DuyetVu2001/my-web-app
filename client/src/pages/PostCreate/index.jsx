@@ -2,7 +2,7 @@ import { Container, Grid } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Input from '../../components/Input';
+import InputCustom from '../../components/InputCustom';
 import {
 	createPostAsync,
 	selectorPosts,
@@ -45,7 +45,7 @@ const PostCreatePage = () => {
 		if (id) {
 			dispatch(updatePostAsync(post));
 
-			alert('Post updated successfully!!')
+			alert('Post updated successfully!!');
 		} else {
 			dispatch(createPostAsync(post));
 			// Reset fields input
@@ -73,7 +73,7 @@ const PostCreatePage = () => {
 							{/* Image */}
 							<Grid item xs={12} sm={12} md={7}>
 								<div className="post-detail__img">
-									<Input
+									<InputCustom
 										required={true}
 										type="text"
 										name="img"
@@ -88,7 +88,7 @@ const PostCreatePage = () => {
 							{/* Title */}
 							<Grid item xs={12} sm={12} md={5}>
 								<div className="post-detail__title">
-									<Input
+									<InputCustom
 										field="textarea"
 										height="60%"
 										fontSize="4.8rem"
@@ -127,7 +127,7 @@ const PostCreatePage = () => {
 
 						<Grid item xs={12} sm={12} md={8}>
 							<article className="post-detail__article">
-								<Input
+								<InputCustom
 									field="textarea"
 									required={true}
 									type="text"
@@ -137,7 +137,7 @@ const PostCreatePage = () => {
 									value={desc}
 									onChange={onChange}
 								/>
-								<Input
+								<InputCustom
 									required={true}
 									type="text"
 									name="genre"
@@ -145,7 +145,7 @@ const PostCreatePage = () => {
 									value={genre}
 									onChange={onChange}
 								/>
-								<Input
+								<InputCustom
 									required={true}
 									type="number"
 									name="time_read"
@@ -154,7 +154,7 @@ const PostCreatePage = () => {
 									onChange={onChange}
 								/>
 
-								<Input
+								<InputCustom
 									field="textarea"
 									required={true}
 									height="100vh"
@@ -164,7 +164,7 @@ const PostCreatePage = () => {
 									value={content}
 									onChange={onChange}
 								/>
-								<Input
+								<InputCustom
 									type="submit"
 									name="submit"
 									value="Submit"

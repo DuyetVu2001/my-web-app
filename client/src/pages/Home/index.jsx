@@ -1,13 +1,13 @@
 import { Container } from '@material-ui/core';
 
-import PostSection from './postSection/PostSection';
-import Header from './header/Header';
+import PostList from './PostList';
+import Header from './Header';
 
 const HomePage = () => (
 	<>
 		<Header />
 		<Container>
-			<PostSection />
+			<PostList />
 		</Container>
 	</>
 );

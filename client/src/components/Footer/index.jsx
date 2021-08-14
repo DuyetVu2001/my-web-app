@@ -1,10 +1,10 @@
 import { Container } from '@material-ui/core';
-import './Footer.scss';
+import './style.scss';
 
 const Footer = () => {
 	return (
 		<div className="footer">
-			<Container style={{textAlign: 'center'}}>
+			<Container style={{ textAlign: 'center' }}>
 				{/*  */}
 				<h4>Follow us on</h4>
 

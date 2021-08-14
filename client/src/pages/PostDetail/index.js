@@ -2,16 +2,16 @@ import { Container, Grid } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectorPosts } from '../../redux/reducers/postReducers';
-import './PostDetail.scss';
+import './style.scss';
 import moment from 'moment';
 
 const PostDetailPage = () => {
 	const { id } = useParams();
 	const postsData = useSelector(selectorPosts);
 	const post = postsData.find((post) => post._id === id);
-	
+
 	const { img, title, content, createdAt } = post;
-	
+
 	return (
 		<Container>
 			<div className="post-detail">
@@ -33,7 +33,9 @@ const PostDetailPage = () => {
 						<Grid item xs={12} sm={12} md={5}>
 							<div className="post-detail__title">
 								<h2>{title}</h2>
-								<p className="post-detail__author">Emmet / {moment(createdAt).format('LLL')}</p>
+								<p className="post-detail__author">
+									Emmet / {moment(createdAt).format('LLL')}
+								</p>
 
 								{/* Contact */}
 								<div className="post-detail__contacts">

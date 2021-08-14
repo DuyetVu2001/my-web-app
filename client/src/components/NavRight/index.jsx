@@ -1,9 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './NavRight.scss';
+import './style.scss';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
-import { hideNavRight, selectorNavRight } from '../../redux/reducers/navRightReducers';
+import {
+	hideNavRight,
+	selectorNavRight,
+} from '../../redux/reducers/navRightReducers';
 
 const NavRight = () => {
 	// Toggle sign-in/out form

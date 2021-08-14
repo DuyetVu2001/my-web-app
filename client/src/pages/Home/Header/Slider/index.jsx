@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Img1 from '../../../assets/img/dog.jpg';
-import Img2 from '../../../assets/img/web.png';
-import Img3 from '../../../assets/img/color.jpg';
-import Img4 from '../../../assets/img/Thao-Tun.jpg';
-import './Slider.scss';
+import Img1 from '../../../../assets/img/dog.jpg';
+import Img2 from '../../../../assets/img/web.png';
+import Img3 from '../../../../assets/img/color.jpg';
+import Img4 from '../../../../assets/img/Thao-Tun.jpg';
+import './style.scss';
 
 const Slider = () => {
 	const [current, setCurrent] = useState(0);

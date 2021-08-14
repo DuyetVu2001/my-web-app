@@ -1,4 +1,4 @@
-import './Filter.scss';
+import './style.scss';
 
 const Filter = ({ clickToFilter }) => (
 	<div className="filter">

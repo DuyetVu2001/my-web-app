@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from './Slider';
-import './Header.scss';
+import './style.scss';
 
 const Header = () => (
 	<header className="header">

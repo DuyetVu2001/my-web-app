@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import {
 	selectorIsAuthenticated,
 	signOutAuth,
-} from '../redux/reducers/authReducers';
-import { showNavRight } from '../redux/reducers/navRightReducers';
-import './Navigation.scss';
+} from '../../redux/reducers/authReducers';
+import { showNavRight } from '../../redux/reducers/navRightReducers';
+import './style.scss';
 
-const Navigation = () => {
+const TopNav = () => {
 	const dispatch = useDispatch();
 
 	const isAuthenticated = useSelector(selectorIsAuthenticated);
@@ -70,4 +70,4 @@ const Navigation = () => {
 	);
 };
 
-export default Navigation;
+export default TopNav;

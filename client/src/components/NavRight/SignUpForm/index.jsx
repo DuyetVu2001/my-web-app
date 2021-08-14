@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { signUpFormSubmit } from '../../redux/reducers/authReducers';
+import { signUpFormSubmit } from '../../../redux/reducers/authReducers';
 
 const SignUpForm = ({ toggleSignForm }) => {
 	const dispatch = useDispatch();
