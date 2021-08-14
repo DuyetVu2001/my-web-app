@@ -32,7 +32,7 @@ export const signInFormSubmit = (signInData) => async (dispatch) => {
 		alert(res.data.message);
 
 		// isAuthenticated = true
-		dispatch(setAuth({ isAuthenticated: true, user: null }));
+		dispatch(setAuth({ isAuthenticated: true, user: res.data.user }));
 	} catch (error) {
 		console.error(error);
 	}
@@ -53,10 +53,11 @@ export const signOutAuth = () => (dispatch) => {
 	localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
 
 	// isAuthenticated = false
-	dispatch(setAuth({ isAuthenticated: false, user: null }))
+	dispatch(setAuth({ isAuthenticated: false, user: null }));
 };
 //@ End
 
 export const selectorIsAuthenticated = (state) => state.auth.isAuthenticated;
+export const selectorUser = (state) => state.auth.user;
 
 export default authSlice.reducer;

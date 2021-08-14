@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
 	selectorIsAuthenticated,
+	selectorUser,
 	signOutAuth,
 } from '../../redux/reducers/authReducers';
 import { showNavRight } from '../../redux/reducers/navRightReducers';
@@ -10,6 +11,8 @@ import './style.scss';
 
 const TopNav = () => {
 	const dispatch = useDispatch();
+	const user = useSelector(selectorUser);
+	const logo = user ? user.username : 'Logo';
 
 	const isAuthenticated = useSelector(selectorIsAuthenticated);
 
@@ -21,7 +24,7 @@ const TopNav = () => {
 						<div className="nav__container">
 							{/* Logo */}
 							<h1 className="nav__logo">
-								<Link to={'/'}>DuyetVu</Link>
+								<Link to={'/'}>{logo}</Link>
 							</h1>
 
 							{/* Routers */}

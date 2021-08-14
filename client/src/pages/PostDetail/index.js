@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { selectorPosts } from '../../redux/reducers/postReducers';
 import './style.scss';
 import moment from 'moment';
+import CommentItem from './CommentItem';
 
 const PostDetailPage = () => {
 	const { id } = useParams();
@@ -70,6 +71,8 @@ const PostDetailPage = () => {
 				</Grid>
 				{/* End main content*/}
 			</div>
+
+			<CommentItem />
 		</Container>
 	);
 };
