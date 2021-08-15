@@ -13,7 +13,7 @@ export const userSignUp = async (req, res) => {
 		const user = await User.findOne({ username });
 
 		if (user) {
-			return res.json({
+			return res.status(401).json({
 				success: false,
 				message: 'User already exists!',
 			});
@@ -23,13 +23,12 @@ export const userSignUp = async (req, res) => {
 		const newUser = new User({ username, password });
 		await newUser.save();
 
-		res.json({
+		res.status(201).json({
 			success: true,
 			message: 'Account created successfully!',
 		});
 	} catch (error) {
-		console.log(error);
-		res.json({ success: false, message: 'Internal server error' });
+		res.status(500).json({ success: false, message: 'Internal server error' });
 	}
 };
 
@@ -41,7 +40,7 @@ export const userSignIn = async (req, res) => {
 		// Check for existing user
 		const user = await User.findOne({ username });
 		if (!user) {
-			return res.json({
+			return res.status(401).json({
 				success: false,
 				message: 'Incorrect username or password!',
 			});
@@ -49,47 +48,24 @@ export const userSignIn = async (req, res) => {
 
 		// Check password in db
 		if (password !== user.password) {
-			res.json({
+			res.status(401).json({
 				success: false,
 				message: 'Incorrect username or password!',
 			});
 		}
 
 		// Create accessToken
-		const accessToken = jwt.sign(
-			{ username },
-			process.env.ACCESS_TOKEN_SECRET,
-			{
-				expiresIn: '3000s',
-			}
-		);
+		const accessToken = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET);
 
 		// Return to client
-		res.json({
+		const { password: reqPassword, security_question, ...resUser } = user._doc;
+		res.status(200).json({
 			success: true,
 			message: 'User signed in successfully!',
 			accessToken,
-			user,
+			user: resUser,
 		});
 	} catch (error) {
-		console.log(error);
-		res.json({ success: false, message: 'Internal server error' });
+		res.status(500).json({ success: false, message: 'Internal server error' });
 	}
 };
-
-// //@ Get -> /user -> check user is logged in ? -> public
-// export const userLogged = async (req, res) => {
-// 	try {
-// 		// Check for existing user
-// 		const user = await User.findById(req.userId).select('-password');
-// 		if (!user) {
-// 			return res.json({ success: false, message: 'User not found' });
-// 		}
-
-// 		// Return to client if success
-// 		res.json({ success: true, user });
-// 	} catch (error) {
-// 		console.log(error);
-// 		res.json({ success: false, message: 'Internal server error' });
-// 	}
-// };

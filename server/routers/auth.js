@@ -3,7 +3,7 @@ import {
 	userSignUp,
 	userSignIn,
 	// userLogged
-} from '../controllers/UserControllers.js';
+} from '../controllers/AuthControllers.js';
 // import { authToken } from '../middles/auth.js';
 
 const router = new Router();
