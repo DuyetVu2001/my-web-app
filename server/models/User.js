@@ -11,7 +11,12 @@ const UserSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		// security question when forget password
+
+		avatar: {
+			type: String,
+			default: '',
+		},
+
 		security_question: {
 			type: String,
 			default: '',

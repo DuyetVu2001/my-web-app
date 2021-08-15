@@ -1,0 +1,17 @@
+POST http://localhost:5000/comments
+Content-Type: application/json
+
+{
+  "post_id": "60fd84435ea9c0b0eb2bb79a"
+}
+
+###
+POST http://localhost:5000/comments/upload
+Content-Type: application/json
+
+{
+  "comment": "tea beuty",
+  "post": "60fd84435ea9c0b0eb2bb79a",
+  "user": "6118d6141a906c28f67efe2f"
+  
+}
