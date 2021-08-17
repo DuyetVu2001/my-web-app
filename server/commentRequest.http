@@ -15,3 +15,6 @@ Content-Type: application/json
   "user": "6118d6141a906c28f67efe2f"
   
 }
+
+###
+DELETE  http://localhost:5000/comments/delete-all

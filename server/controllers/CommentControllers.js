@@ -27,3 +27,13 @@ export const getComments = async (req, res) => {
 		res.status(500).json({ success: false, message: 'Internal server error' });
 	}
 };
+
+//@ Delete -> /comments/delete-all -> delete all comments (deployment) -> SOS
+export const deleteAllComments = async (req, res) => {
+	try {
+		await Comment.remove();
+		res.status(200).json({ success: true });
+	} catch (error) {
+		res.status(500).json({ success: false, message: 'Internal server error' });
+	}
+};
