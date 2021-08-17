@@ -4,77 +4,26 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { API_URL } from '../../../constant';
 import { selectorUser } from '../../../redux/reducers/authReducers';
+import CommentItem from './CommentItem';
 import './style.scss';
-import moment from 'moment';
+import io from 'socket.io-client';
 
-const CommentItem = (props) => {
-	const {
-		comment,
-		createdAt,
-		user: { username, avatar },
-	} = props;
-
-	return (
-		<div className="comments__item">
-			<img
-				src={avatar || 'https://pbs.twimg.com/media/D8tCa48VsAA4lxn.jpg'}
-				alt="avatar"
-				className="comments__user-avatar"
-			/>
-			<div className="comments__content-wrapper">
-				<div className="comments__username">
-					<p>
-						{username}{' '}
-						<span>{moment(createdAt).format('YYYY-MM-DD, h:mm:ss a')}</span>{' '}
-					</p>
-				</div>
-				<div className="comments__content">
-					<p>{comment}</p>
-				</div>
-			</div>
-		</div>
-	);
-};
+const socket = io('http://localhost:8080');
 
 const CommentList = () => {
-	const { id } = useParams();
 	const [comment, setComment] = useState('');
 	const [comments, setComments] = useState([]);
-
+	// get id from url
+	const { id: postId } = useParams();
 	const user = useSelector(selectorUser);
-	const { username, avatar } = user;
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setComments((state) => [
-			{
-				comment,
-				user: {
-					avatar,
-					username,
-				},
-			},
-			...state,
-		]);
-
-		setComment('');
-
-		const upload = async () => {
-			await axios.post(API_URL + '/comments/upload', {
-				user: user._id,
-				post: id,
-				comment,
-			});
-		};
-
-		upload();
-	};
-
-	// get comments
+	// fetch comments
 	useEffect(() => {
 		const getComments = async () => {
 			try {
-				const res = await axios.post(API_URL + '/comments', { post_id: id });
+				const res = await axios.post(API_URL + '/comments', {
+					post_id: postId,
+				});
 
 				setComments(res.data.comments);
 			} catch (error) {
@@ -83,21 +32,77 @@ const CommentList = () => {
 		};
 
 		getComments();
-	}, [id]);
+	}, [postId]);
 
 	const handleOnChange = (e) => {
 		setComment(e.target.value);
 	};
 
+	// upload data when click submit button
+	const upload = async () => {
+		await axios.post(API_URL + '/comments/upload', {
+			user: user._id,
+			post: postId,
+			comment,
+		});
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setComments((state) => [
+			{
+				comment,
+				user: {
+					avatar: user.avatar,
+					username: user.username,
+				},
+			},
+			...state,
+		]);
+
+		setComment('');
+
+		socket.emit('send-message', comment, user.username, user.avatar, postId);
+
+		upload();
+	};
+	// end
+
+	useEffect(() => {
+		socket.emit('join-room', postId);
+	}, [postId]);
+
+	useEffect(() => {
+		let isMounted = true;
+
+		socket.on('receive-message', (comment, username, avatar) => {
+			isMounted &&
+				setComments((state) => [
+					{
+						comment,
+						user: {
+							username,
+							avatar,
+						},
+					},
+					...state,
+				]);
+		});
+
+		return () => {
+			isMounted = false;
+		};
+	}, []);
+
 	return (
 		<div className="comments">
 			<div className="comments__header">
-				<p>99 Comments</p>
+				<p>{comments.length} Comments</p>
 			</div>
 
 			<div className="comments__form-wrapper">
 				<img
-					src={avatar || 'https://pbs.twimg.com/media/D8tCa48VsAA4lxn.jpg'}
+					src={user.avatar || 'https://pbs.twimg.com/media/D8tCa48VsAA4lxn.jpg'}
 					alt="avatar"
 					className="comments__user-avatar"
 				/>
@@ -105,6 +110,7 @@ const CommentList = () => {
 					<input
 						type="text"
 						name="comment"
+						autoComplete="off"
 						placeholder="Comment here..."
 						value={comment}
 						onChange={handleOnChange}
@@ -114,7 +120,7 @@ const CommentList = () => {
 			</div>
 			{comments.length > 0
 				? comments.map((item, index) => <CommentItem {...item} key={index} />)
-				: 'Khong co comment hjhj!'}
+				: 'Nothing here!'}
 		</div>
 	);
 };
