@@ -1,85 +1,32 @@
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import io from 'socket.io-client';
 import { API_URL } from '../../../constant';
 import { selectorUser } from '../../../redux/reducers/authReducers';
 import CommentItem from './CommentItem';
 import './style.scss';
-import io from 'socket.io-client';
-
-const socket = io('http://localhost:8080');
 
 const CommentList = () => {
-	const [comment, setComment] = useState('');
+	const [newComment, setNewComment] = useState('');
 	const [comments, setComments] = useState([]);
-	// get id from url
-	const { id: postId } = useParams();
+
 	const user = useSelector(selectorUser);
-
-	// fetch comments
-	useEffect(() => {
-		const getComments = async () => {
-			try {
-				const res = await axios.post(API_URL + '/comments', {
-					post_id: postId,
-				});
-
-				setComments(res.data.comments);
-			} catch (error) {
-				console.log(error);
-			}
-		};
-
-		getComments();
-	}, [postId]);
-
-	const handleOnChange = (e) => {
-		setComment(e.target.value);
-	};
-
-	// upload data when click submit button
-	const upload = async () => {
-		await axios.post(API_URL + '/comments/upload', {
-			user: user._id,
-			post: postId,
-			comment,
-		});
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setComments((state) => [
-			{
-				comment,
-				user: {
-					avatar: user.avatar,
-					username: user.username,
-				},
-			},
-			...state,
-		]);
-
-		setComment('');
-
-		socket.emit('send-message', comment, user.username, user.avatar, postId);
-
-		upload();
-	};
-	// end
+	const { id: postId } = useParams();
+	const socket = useRef();
 
 	useEffect(() => {
-		socket.emit('join-room', postId);
-	}, [postId]);
+		socket.current = io('http://localhost:8080');
 
-	useEffect(() => {
+		// Render new comment from socket server
 		let isMounted = true;
-
-		socket.on('receive-message', (comment, username, avatar) => {
+		socket.current.on('receive-comment', (newComment, username, avatar) => {
 			isMounted &&
 				setComments((state) => [
 					{
-						comment,
+						comment: newComment,
 						user: {
 							username,
 							avatar,
@@ -94,6 +41,84 @@ const CommentList = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		// get all comments in current post
+		(async () => {
+			try {
+				const res = await axios.get(API_URL + '/comments/' + postId);
+				setComments(res.data.comments);
+			} catch (error) {
+				console.log(error);
+			}
+		})();
+
+		// send postId to socket server
+		socket.current.emit('join-post', postId);
+	}, [postId]);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (!newComment) return;
+
+		setComments((state) => [
+			{
+				comment: newComment,
+				user: {
+					avatar: user.avatar,
+					username: user.username,
+				},
+			},
+			...state,
+		]);
+
+		// Send new comment to socket server
+		socket.current.emit(
+			'send-comment',
+			newComment,
+			user.username,
+			user.avatar,
+			postId
+		);
+
+		setNewComment('');
+
+		// upload newComment to db
+		(async () => {
+			await axios.post(API_URL + '/comments/', {
+				user: user._id,
+				post: postId,
+				comment: newComment,
+			});
+		})();
+	};
+
+	const handleDelete = async (id) => {
+		setComments((state) => state.filter((comment) => comment._id !== id));
+		await axios.delete(API_URL + '/comments/' + id);
+	};
+
+	const handleUpdate = (id, updateComment) => {
+		if (!updateComment) return;
+
+		setComments((state) =>
+			state.map((item) =>
+				item._id === id ? { ...item, comment: updateComment } : item
+			)
+		);
+
+		// update comment to db
+		(async () => {
+			await axios.put(API_URL + '/comments/' + id, { comment: updateComment });
+		})();
+	};
+
+	const itemProps = {
+		handleDelete,
+		handleUpdate,
+		currentUserId: user._id,
+		comments,
+	};
+
 	return (
 		<div className="comments">
 			<div className="comments__header">
@@ -107,19 +132,20 @@ const CommentList = () => {
 					className="comments__user-avatar"
 				/>
 				<form className="comments__form" onSubmit={handleSubmit}>
-					<input
-						type="text"
-						name="comment"
-						autoComplete="off"
+					<TextareaAutosize
 						placeholder="Comment here..."
-						value={comment}
-						onChange={handleOnChange}
+						value={newComment}
+						onChange={(e) => setNewComment(e.target.value)}
 					/>
 					<input type="submit" value="Comment" />
 				</form>
 			</div>
+
+			{/* Comments section */}
 			{comments.length > 0
-				? comments.map((item, index) => <CommentItem {...item} key={index} />)
+				? comments.map((item, index) => (
+						<CommentItem {...item} {...itemProps} key={index} index={index} />
+				  ))
 				: 'Nothing here!'}
 		</div>
 	);

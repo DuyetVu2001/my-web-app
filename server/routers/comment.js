@@ -3,12 +3,16 @@ import {
 	deleteAllComments,
 	getComments,
 	uploadComment,
+	updateComment,
+	deleteComment,
 } from '../controllers/CommentControllers.js';
 
 const router = new Router();
 
-router.post('/', getComments);
-router.post('/upload', uploadComment);
+router.get('/:id', getComments);
+router.post('/', uploadComment);
+router.put('/:id', updateComment);
+router.delete('/:id', deleteComment);
 // router.delete('/delete-all', deleteAllComments);
 
 export default router;

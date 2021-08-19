@@ -5,11 +5,11 @@ const io = require('socket.io')(8080, {
 });
 
 io.on('connection', (socket) => {
-	socket.on('send-message', (comment, username, avatar, postId) => {
-		socket.to(postId).emit('receive-message', comment, username, avatar);
+	socket.on('send-comment', (newComment, username, avatar, postId) => {
+		socket.to(postId).emit('receive-comment', newComment, username, avatar);
 	});
 
-	socket.on('join-room', (postId) => {
+	socket.on('join-post', (postId) => {
 		socket.join(postId);
 	});
 });

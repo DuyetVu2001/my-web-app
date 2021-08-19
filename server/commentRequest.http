@@ -1,20 +1,25 @@
-POST http://localhost:5000/comments
-Content-Type: application/json
-
-{
-  "post_id": "60fd84435ea9c0b0eb2bb79a"
-}
+GET http://localhost:5000/comments/60fd84435ea9c0b0eb2bb79a
 
 ###
-POST http://localhost:5000/comments/upload
+POST http://localhost:5000/comments/
 Content-Type: application/json
 
 {
   "comment": "tea beuty",
   "post": "60fd84435ea9c0b0eb2bb79a",
   "user": "6118d6141a906c28f67efe2f"
-  
 }
 
 ###
+PUT http://localhost:5000/comments/611e229a2464b0430b459ddb
+Content-Type: application/json
+
+{
+  "comment": "tea beuty (updat 11 e)"
+}
+
+###
+DELETE  http://localhost:5000/comments/611e26712375cb4bd0f3bffc
+
+### SOS (delete all comments)
 DELETE  http://localhost:5000/comments/delete-all

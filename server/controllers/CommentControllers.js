@@ -1,8 +1,6 @@
-import User from '../models/User.js';
-import Post from '../models/Post.js';
 import Comment from '../models/Comment.js';
 
-//@ Post -> /comments/upload -> upload comment -> private
+//@ Post -> /comments/ -> upload comment -> private
 export const uploadComment = async (req, res) => {
 	try {
 		// Create new comment and save
@@ -18,11 +16,38 @@ export const uploadComment = async (req, res) => {
 //@ Get -> /comments -> get all comment for each difference post -> public
 export const getComments = async (req, res) => {
 	try {
-		const comments = await Comment.find({ post: req.body.post_id }, '-post')
+		const comments = await Comment.find({ post: req.params.id }, '-post')
 			.sort({ createdAt: -1 })
-			.populate('user', 'username avatar -_id');
+			.populate('user', 'username avatar');
 
 		res.status(200).json({ success: true, comments });
+	} catch (error) {
+		res.status(500).json({ success: false, message: 'Internal server error' });
+	}
+};
+
+//@ Put -> /comments/:id -> update comment -> private
+export const updateComment = async (req, res) => {
+	try {
+		await Comment.findByIdAndUpdate(
+			req.params.id,
+			{ $set: req.body },
+			{
+				new: true,
+			}
+		);
+
+		res.status(200).json({ success: true });
+	} catch (error) {
+		res.status(500).json({ success: false, message: 'Internal server error' });
+	}
+};
+
+//@ Delete -> /comments/:id -> delete comment -> private
+export const deleteComment = async (req, res) => {
+	try {
+		await Comment.findByIdAndRemove(req.params.id);
+		res.status(200).json({ success: true });
 	} catch (error) {
 		res.status(500).json({ success: false, message: 'Internal server error' });
 	}

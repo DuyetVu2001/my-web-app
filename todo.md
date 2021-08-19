@@ -1,5 +1,7 @@
 > 1.  form sign in/ sign up
 > 1.  responsive
+> 1.  CommentItem has unique id form client to request delete
+> 1.  refactor CommentList CommentItems
 
 # Components flow
 
